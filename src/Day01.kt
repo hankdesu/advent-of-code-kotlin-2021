@@ -14,7 +14,24 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        var measurements = 0
+        var lastNumber = 0
+        val sumList = mutableListOf<Int>()
+        for((index, number) in input.withIndex()) {
+            if (index <= input.size - 3) {
+                val sum = number.toInt() + input[index + 1].toInt() + input[index + 2].toInt()
+                sumList.add(sum)
+            }
+        }
+        for((index, number) in sumList.withIndex()) {
+            if (index != 0) {
+                if (number > lastNumber) {
+                    measurements += 1
+                }
+            }
+            lastNumber = number
+        }
+        return measurements
     }
 
     // test if implementation meets criteria from the description, like:
